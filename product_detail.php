@@ -9,12 +9,15 @@
 	<?php
 	include 'connectDB.php';
 
-	if (isset($_REQUEST['submit_pr'])) {
-		$id_pr = addslashes($_POST['id_pr']);
-
-	}
+	$id_pr = $_GET['id'];
 	$get = " select * from product where id=$id_pr";
 	$result = mysqli_query($conn,$get);
+
+	// if (isset($_REQUEST['submit_pr'])) {
+	// 	$id_pr = addslashes($_POST['id_pr']);
+
+	// }
+	
 	?>
 
 	<div class="container" id="product" style="margin-top: 40px;">

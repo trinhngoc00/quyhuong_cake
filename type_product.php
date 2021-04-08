@@ -28,23 +28,21 @@
 		</h2>
 		<h5 style="text-align: center;">Hiển thị <?php echo $num; ?> sản phẩm</h5>
 		<div class="row justify-content-center" id="card_box">
-
 			<?php foreach($result_pr as $row): ?>
 				<form method="post" action="product_detail.php" class="col-lg-3 col-md-4 col-sm-6 col-12 ">
 					<div class="card">
 						<input type="text" name="id_pr" hidden="true" value="<?php echo $row['id']; ?>">
 						<div class="box-img">
-							<a href="product_detail.php" name="submit_pr">
+							<a href="product_detail.php?id=<?php echo $row['id'];?>" name="submit_pr">
 								<img src="img/<?php echo $row['image']; ?>" class="card-img-top" alt="xa_lach">
 							</a>
 							<?php if ($row['price_sale'] != 0): ?>
 								<div class="btn-sale">Sale</div>
 							<?php endif; ?>
-							
 						</div>
 
 						<div class="card-body">
-							<a href="" class="card-name">
+							<a href="product_detail.php?id=<?php echo $row['id'];?>" class="card-name">
 								<h5 class="card-title"><?php echo $row['name']; ?></h5>
 							</a>
 							<?php if ($row['price_sale'] != 0): ?>
@@ -53,21 +51,18 @@
 								<?php else: ?>
 									<p class="card-text"><?php echo $row['price']; ?> VNĐ</p>
 								<?php endif; ?>
-								<div>
-									<input type="submit" class="card-link" name="submit_pr" value="Thêm vào giỏ hàng"> 
+								<div style="padding-top: 10px;">
+									<a class="btn btn-success add_to_cart" 
+									href="cart.php?id=<?php echo $row['id'];?>">Thêm vào giỏ hàng</a>
 								</div>
-
 							</div>
 						</div>			
 					</form>
 				<?php endforeach; ?>	
-
 			</div>
 			<br>
 		</div>
-
 		<?php include 'layouts/footer.php'; ?>
 		<?php include 'layouts/scripts.php'; ?>
 	</body>
 	</html>
-

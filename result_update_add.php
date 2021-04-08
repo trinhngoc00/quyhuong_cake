@@ -27,11 +27,11 @@ if (isset($_POST['update'])) {
 		exit;
 	}
 
-	$find_name=mysqli_query($conn, "SELECT name FROM product WHERE name = '$name'");
-	if (mysqli_num_rows($find_name) != 0) {
-		echo "Sản phẩm đã tồn tại";
-		exit;
-	}
+	// $find_name=mysqli_query($conn, "SELECT name FROM product WHERE name = '$name'");
+	// if (mysqli_num_rows($find_name) != 0) {
+	// 	echo "Sản phẩm đã tồn tại";
+	// 	exit;
+	// }
 
 	$post1 = "UPDATE product 
 	SET id_type='{$id_type}', name='{$name}', amount='{$amount}', price = '{$price}', price_sale='{$price_sale}', image='{$image_up}', description='{$description}'

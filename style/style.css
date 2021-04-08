@@ -162,3 +162,7 @@ a.item_type_pr{
 	display: inline-block;
 	padding-right: 20px;
 }
+.add_to_cart{
+	background-color: #7fb06f;
+	border-color: #7fb06f;
+}
