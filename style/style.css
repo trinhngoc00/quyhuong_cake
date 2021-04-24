@@ -111,7 +111,7 @@
 	border: none !important;
 }
 .input_info{
-	width: 400px;
+	width: 300px;
 }
 @media (max-width: 767px) {
 	.img_right{
@@ -146,6 +146,7 @@ a.item_type_pr{
 }
 .ad_menu{
 	background: #4b221c;
+	min-height: 100vh;
 }
 .ad_menu .nav-link{
 	font-size: 16px;
@@ -165,4 +166,19 @@ a.item_type_pr{
 .add_to_cart{
 	background-color: #7fb06f;
 	border-color: #7fb06f;
+}
+.row_box p.card-text{
+	font-size: 14px;
+}
+.btn_modal, .btn_modal:hover{
+	background-color: chocolate;
+	border-color: chocolate;
+}
+.btn_modal.active, .btn_modal:active, .btn_modal.focus,.btn_modal:focus{
+	background-color: chocolate;
+	border-color: chocolate;
+	box-shadow: 0 0 0 0.2rem rgb(238 161 112 / 50%);
+}
+.message_alert{
+	font-size: 14px;
 }

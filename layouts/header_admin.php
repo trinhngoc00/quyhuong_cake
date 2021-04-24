@@ -15,7 +15,6 @@
 </div>
 <?php include 'connectDB.php'; 
 ?>
-
 <div class="container-fluid ad_head">
 	<ul class="nav">
 		<li class="nav-item">
@@ -23,6 +22,15 @@
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" href="index.php">Trang chủ</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href='admin.php'>Sản phẩm</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href='admin_type.php'>Loại sản phẩm</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href='admin_user.php'>Người dùng</a>
 		</li>
 	</ul>
 </div>

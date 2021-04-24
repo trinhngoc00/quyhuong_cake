@@ -10,7 +10,13 @@
 	include 'connectDB.php';
 	$id_type = $_GET['id'];
 
-	$get_pr = " select * from product where id_type = $id_type";
+	if ($id_type == 1) {
+		$get_pr = " select * from product 
+		where (id_type = 1 or id_type = 2 or id_type = 3 or id_type = 6)";
+	}
+	else {
+		$get_pr = " select * from product where id_type = $id_type";
+	}
 	$result_pr = mysqli_query($conn,$get_pr);
 
 	$num = mysqli_num_rows($result_pr);

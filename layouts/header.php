@@ -63,11 +63,14 @@
 						<li class="nav-item">
 							<a class="nav-link" href="type_product.php?id=1" >Bánh gato</a>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 							<a class="nav-link" href="type_product.php?id=5">Bánh ngọt</a>
-						</li>
+						</li> -->
 						<li class="nav-item">
 							<a class="nav-link" href="type_product.php?id=7">Bánh miếng nhỏ</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="type_product.php?id=9" >Bánh sự kiện</a>
 						</li>
 
 						<?php if (isset($_SESSION['username']) && $_SESSION['username']): ?>
@@ -79,6 +82,12 @@
 									<a class="nav-link" href="resgister.php">Đăng kí</a>
 								</li>
 							<?php endif;?>
+
+						<?php if (isset($_SESSION['permission']) && $_SESSION['permission'] == 10) { ?>
+							<li class="nav-item">
+								<a class="nav-link" href="admin.php">Trang quản trị</a>
+							</li>
+						<?php } ?>
 
 							<li class="nav-item nav-item-icon" id="icon-search">
 								<a class="nav-link" type="button"><i class="fa fa-search"></i></a>

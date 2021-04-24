@@ -24,7 +24,7 @@
 					<div class="card">
 						<input type="text" name="id_pr" hidden="true" value="<?php echo $row['id']; ?>">
 						<div class="box-img">
-							<a href="product_detail.php?id=<?php echo $row['id'];?>">
+							<a href="product_detail.php?id=<?php echo $row['id']; ?>">
 								<img src="img/<?php echo $row['image']; ?>" class="card-img-top" alt="xa_lach">
 							</a>
 							<?php if ($row['price_sale'] != 0): ?>
