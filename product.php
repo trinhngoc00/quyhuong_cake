@@ -8,7 +8,7 @@
 	<?php
 	include 'connectDB.php';
 
-	$get1 = " select * from product";
+	$get1 = " select * from products";
 	$result = mysqli_query($conn,$get1);
 
 	$num = mysqli_num_rows($result);
