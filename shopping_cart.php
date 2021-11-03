@@ -8,7 +8,7 @@
 	
 	<?php
 	include 'connectDB.php';
-	$get = " select * from product ORDER BY RAND ( ) LIMIT 2";
+	$get = " select * from products ORDER BY RAND ( ) LIMIT 2";
 	$result = mysqli_query($conn,$get);
 
 	?>

@@ -11,11 +11,11 @@
 	$id_type = $_GET['id'];
 
 	if ($id_type == 1) {
-		$get_pr = " select * from product 
+		$get_pr = " select * from products 
 		where (id_type = 1 or id_type = 2 or id_type = 3 or id_type = 6)";
 	}
 	else {
-		$get_pr = " select * from product where id_type = $id_type";
+		$get_pr = " select * from products where id_type = $id_type";
 	}
 	$result_pr = mysqli_query($conn,$get_pr);
 

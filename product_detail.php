@@ -9,7 +9,7 @@
 	include 'connectDB.php';
 
 	$id_pr = $_GET['id'];
-	$get = " select * from product where id=$id_pr";
+	$get = " select * from products where id=$id_pr";
 	$result = mysqli_query($conn,$get);
 
 	?>
