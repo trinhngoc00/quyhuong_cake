@@ -37,7 +37,7 @@
 			if (!$name || !$amount || !$price || !$image_up) {
 				return "Vui lòng nhập đầy đủ thông tin về: tên sản phẩm, số lượng, giá tiền, hình ảnh.";
 			}
-			$post1 = "UPDATE product 
+			$post1 = "UPDATE products 
 			SET id_type='{$id_type}', name='{$name}', amount='{$amount}', price = '{$price}', price_sale='{$price_sale}', image='{$image_up}', description='{$description}'
 			WHERE id = $id";
 			$update_pr = mysqli_query($conn, $post1);
@@ -55,12 +55,12 @@
 				return "Vui lòng nhập đầy đủ thông tin về: tên sản phẩm, giá tiền, hình ảnh. ";
 			}
 
-			$find_name=mysqli_query($conn, "SELECT name FROM product WHERE name = '$name'");
+			$find_name=mysqli_query($conn, "SELECT name FROM products WHERE name = '$name'");
 			if (mysqli_num_rows($find_name) != 0) {
 				return "Sản phẩm đã tồn tại";
 			}
 
-			$sql = "INSERT INTO product (id,id_type,name,amount,price,price_sale,image,description)
+			$sql = "INSERT INTO products (id,id_type,name,amount,price,price_sale,image,description)
 			VALUES (null, '{$id_type}', '{$name}','{$amount}', '{$price}', '{$price_sale}', '{$image_up}', '{$description}')";
 			$add_pr = mysqli_query($conn, $sql);
 
@@ -119,7 +119,7 @@
 			$flag = $_GET['flag'];
 
 			if ($flag === 'product') {
-				$sql = "DELETE FROM product WHERE id = $id";
+				$sql = "DELETE FROM products WHERE id = $id";
 				$result = mysqli_query($conn,$sql);
 
 				if ($result) {

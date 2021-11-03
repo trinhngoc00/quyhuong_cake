@@ -91,7 +91,7 @@
 						<th>Sửa</th>
 					</tr>
 					<?php 
-					$get_pr = " select * from product";
+					$get_pr = " select * from products";
 					$result_pr = mysqli_query($conn,$get_pr); 
 					foreach ($result_pr as $row): ?>
 						<tr>
