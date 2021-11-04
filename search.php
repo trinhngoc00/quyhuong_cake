@@ -19,13 +19,13 @@
 						$dbpass = null;
 						$db = "quyhuong_cake2";
 						$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Không thể kết nối database");
-						$query = "select * from product where name like '%$search%' or price like '%$search%' ";
+						$query = "select * from products where name like '%$search%' or price like '%$search%' ";
 
 						$result_search = mysqli_query($conn,$query);
 
 						$num = mysqli_num_rows($result_search);
 						if ($num > 0 && $search != ""): ?>
-							<p align="center">Tìm thấy <?php echo $num; ?> sản phẩm phù hợp</p>
+							<p align="center" id="messageResult">Tìm thấy <?php echo $num; ?> sản phẩm phù hợp</p>
 
 							<div class="row justify-content-center" >
 							<?php while ($row = mysqli_fetch_assoc($result_search)): ?>
@@ -58,7 +58,7 @@
 							<?php endwhile; ?>
 							</div>
 							<?php else: ?>
-								<?php echo "Không tìm thấy kết quả phù hợp"; ?>	
+								<?php echo "<p id='message'>Không tìm thấy kết quả phù hợp</p>"; ?>	
 							<?php endif; ?>
 				<?php endif; ?>
 			<?php endif; ?>

@@ -15,7 +15,7 @@
 				if ($flag === 'product') { ?>
 					<h2>Sản phẩm</h2>
 					<?php 
-					$get_pr ="SELECT * from product WHERE id = $id";
+					$get_pr ="SELECT * from products WHERE id = $id";
 					$run = mysqli_query($conn,$get_pr);
 					foreach ($run as $row): ?>
 						<form method="post" action="result_update_add_del.php" enctype="multipart/form-data">

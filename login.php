@@ -15,13 +15,13 @@
 		$_SESSION['permission'] = 0;
 
 		if (!$username || !$password) {
-			echo "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu. <a href='javascript: history.go(-1)'>Trở lại</a>";
+			echo "<p id='message'>Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.</p> <a href='javascript: history.go(-1)'>Trở lại</a>";
 			exit;
 		}
     //Kiểm tra tên đăng nhập có tồn tại không
 		$query = mysqli_query($conn, "SELECT username, password, permission FROM customer WHERE username='$username'");
 		if (mysqli_num_rows($query) == 0) {
-			echo "Tên đăng nhập này không tồn tại. Vui lòng kiểm tra lại. <a href='javascript: history.go(-1)'>Trở lại</a>";
+			echo "<p id='message'>Tên đăng nhập này không tồn tại. Vui lòng kiểm tra lại.</p> <a href='javascript: history.go(-1)'>Trở lại</a>";
 			exit;
 		}
 
@@ -35,7 +35,7 @@
 		// }
     //So sánh 2 mật khẩu có trùng khớp hay không
 		if ($password != $row['password']) {
-			echo "Mật khẩu không đúng. Vui lòng nhập lại. <a href='javascript: history.go(-1)'>Trở lại</a>";
+			echo "<p id='message'>Mật khẩu không đúng. Vui lòng nhập lại.</p> <a href='javascript: history.go(-1)'>Trở lại</a>";
 			exit;
 		}
 
@@ -53,11 +53,11 @@
 			<form method="post" action="login.php">
 				<table class="" border="0" cellpadding="0" cellspacing="0" style="margin: auto;">
 					<tr>
-						<td><label>Tên đăng nhập:</label></td>
+						<td><label>Tên đăng nhập*:</label></td>
 						<td><input class="input_info" id="user" type="text" name="username" value=""></td>
 					</tr>
 					<tr>
-						<td><label>Mật khẩu:</label></td>
+						<td><label>Mật khẩu*:</label></td>
 						<td><input class="input_info" type="password" name="password" id="pass" value=""></td>
 					</tr>
 					<tr>

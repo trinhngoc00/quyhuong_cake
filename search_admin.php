@@ -85,7 +85,7 @@
 					<h4>Hãy nhập từ khoá tìm kiếm.</h4>
 					<?php else: ?>
 						<?php include "connectDB.php";
-						$query = "select * from product where name like '%$search%' or price like '%$search%' ";
+						$query = "select * from products where name like '%$search%' or price like '%$search%' ";
 						$result_search = mysqli_query($conn,$query);
 
 						$num = mysqli_num_rows($result_search); ?>

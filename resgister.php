@@ -14,23 +14,23 @@
 			<form method="post" action="process_resgister.php">
 				<table class="" border="0" cellpadding="0" cellspacing="0" style="margin: auto;">
 					<tr>
-						<td><label>Tên người dùng:</label></td>
+						<td><label>Tên người dùng(*):</label></td>
 						<td><input class="input_info" type="text" name="username" id="user" value="" placeholder="trinhngoc00"></td>
 					</tr>
 					<tr>
-						<td><label>Mật khẩu:</label></td>
+						<td><label>Mật khẩu(*):</label></td>
 						<td><input class="input_info" type="password" name="password" id="pass" value=""></td>
 					</tr>
 					<tr>
-						<td><label>Họ tên:</label></td>
+						<td><label>Họ tên(*):</label></td>
 						<td><input class="input_info" type="text" name="name" id="" value="" placeholder="Trịnh Hồng Ngọc"></td>
 					</tr>
 					<tr>
-						<td><label>Địa chỉ:</label></td>
+						<td><label>Địa chỉ(*):</label></td>
 						<td><input class="input_info" type="text" name="address" id="" value="" placeholder="162 Đường Phan Đình Phùng"></td>
 					</tr>
 					<tr>
-						<td><label>Số điện thoại:</label></td>
+						<td><label>Số điện thoại(*):</label></td>
 						<td><input class="input_info" type="text" name="phone" id="" value="" placeholder="0123456789"></td>
 					</tr>
 					<tr>
