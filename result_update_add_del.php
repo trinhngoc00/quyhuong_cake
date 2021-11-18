@@ -34,8 +34,8 @@
 		if (isset($_POST['update'])) {
 			$id = $_POST['id'];
 
-			if (!$name || !$amount || !$price || !$image_up) {
-				return "Vui lòng nhập đầy đủ thông tin về: tên sản phẩm, số lượng, giá tiền, hình ảnh.";
+			if (!$name || !$amount || !$price) {
+				return "<p id='message'>Vui lòng nhập đầy đủ thông tin.</p>";
 			}
 			$post1 = "UPDATE products 
 			SET id_type='{$id_type}', name='{$name}', amount='{$amount}', price = '{$price}', price_sale='{$price_sale}', image='{$image_up}', description='{$description}'
@@ -43,21 +43,21 @@
 			$update_pr = mysqli_query($conn, $post1);
 
 			if ($update_pr){
-				return "Cập nhật sản phẩm thành công.";
+				return "<p id='message'>Cập nhật sản phẩm thành công.</p>";
 			}
 			else
-				return "Có lỗi xảy ra.";
+				return "<p id='message'>Có lỗi xảy ra.</p>";
 		}
 
 //add_product
 		if(isset($_POST['btn_add'])) {
-			if (!$name || !$price || !$image_up) {
-				return "Vui lòng nhập đầy đủ thông tin về: tên sản phẩm, giá tiền, hình ảnh. ";
+			if (!$name || !$amount || !$price) {
+				return "<p id='message'>Vui lòng nhập đầy đủ thông tin.</p>";
 			}
 
 			$find_name=mysqli_query($conn, "SELECT name FROM products WHERE name = '$name'");
 			if (mysqli_num_rows($find_name) != 0) {
-				return "Sản phẩm đã tồn tại";
+				return "<p id='message'>Sản phẩm đã tồn tại</p>";
 			}
 
 			$sql = "INSERT INTO products (id,id_type,name,amount,price,price_sale,image,description)
@@ -65,30 +65,86 @@
 			$add_pr = mysqli_query($conn, $sql);
 
 			if ($add_pr){
-				return "Đã thêm sản phẩm thành công.";
+				return "<p id='message'>Đã thêm sản phẩm thành công.</p>";
 			}
 			else
-				return "Có lỗi xảy ra.";
+				return "<p id='message'>Có lỗi xảy ra.</p>";
 		}
 //add type
 		if (isset($_POST['add_type'])) {
 			if (isset($_POST['name'])) {
 				$name = $_POST['name'];
 				if (!$name) {
-					echo "Vui lòng nhập đầy đủ thông tin loại sản phẩm. <a href='javascript: history.go(-1)'>Trở lại</a>";
+					echo "Vui lòng nhập đầy đủ thông tin. <a href='javascript: history.go(-1)'>Trở lại</a>";
 				}
 				$find_name=mysqli_query($conn, "SELECT name FROM type WHERE name = '$name'");
 				if (mysqli_num_rows($find_name) != 0) {
-					echo "Loại sản phẩm đã tồn tại";
+					echo "<p id='message'>Loại sản phẩm đã tồn tại</p>";
 				}
 				$sql = "INSERT INTO type (id,name) VALUES (null, '{$name}')";
 				$add_pr = mysqli_query($conn, $sql);
 				if ($add_pr){
-					echo "Thêm loại sản phẩm thành công.";
+					echo "<p id='message'>Thêm loại sản phẩm thành công.</p>";
 				}
 				else
-					echo "Có lỗi xảy ra.";
+					echo "<p id='message'>Có lỗi xảy ra.</p>";
 			}
+		}
+
+		//add_user
+		if(isset($_POST['btn_add_user'])) {
+			if (!$_POST['username'] || !$_POST['password'] || !$_POST['name'] || !$_POST['address'] || !$_POST['phone']) {
+				return "<p id='message'>Vui lòng nhập đầy đủ thông tin.</p>";
+			}
+
+			$username = addslashes($_POST['username']);
+			$password = addslashes($_POST['password']);
+			$name = addslashes($_POST['name']);
+			$address = addslashes($_POST['address']);
+			$phone = addslashes($_POST['phone']);
+
+			$query = mysqli_query($conn, "SELECT username FROM customer WHERE username='$username'");
+			$query1 = mysqli_query($conn, "SELECT phone FROM customer WHERE phone='$phone'");
+
+			if (mysqli_num_rows($query) != 0) {
+				return "<p id='message'>Tài khoản đã tồn tại</p>";
+			}
+			if (mysqli_num_rows($query1) != 0) {
+				return "<p id='message'>Số điện thoại đã tồn tại</p>";
+			}
+
+			$check_pass = preg_match('/^$|^([a-zA-Z0-9_]){4,255}$/', $password);
+			if ($check_pass == false) {
+				echo "<p id='message'>Mật khẩu không hợp lệ.</p>";
+				exit;
+			}
+
+			$check_name = preg_match('/^([a-zA-Z0-9]|\s){3,255}$/', $name);
+			if ($check_name == false) {
+				echo "<p id='message'>Họ tên không hợp lệ.</p>";
+				exit;
+			}
+
+			$check_address = preg_match('/^(.){3,255}$/', $address);
+			if ($check_address == false) {
+				echo "<p id='message'>Địa chỉ không hợp lệ.</p>";
+				exit;
+			}
+
+			$check_phone = preg_match('/^(\d+)$/', $phone);
+			if ($check_phone == false) {
+				echo "<p id='message'>Số điện thoại không hợp lệ.</p>";
+				exit;
+			}
+
+			$post1 = "insert into customer (id, username, password, name, address, phone, created_at, updated_at) VALUE (NULL, '{$username}', '{$password}', '{$name}', '{$address}', '{$phone}', current_timestamp(), current_timestamp())";
+			$addmember = mysqli_query($conn, $post1);
+
+			if ($addmember){
+				return "<p id='message'>Đã thêm người dùng thành công.</p>";
+			}
+			else
+				return "<p id='message'>Có lỗi xảy ra.</p>";
 		}
 //update type
 		if (isset($_POST['update_type'])) {
@@ -96,21 +152,21 @@
 				$id = $_POST['id'];
 				$name = $_POST['name'];
 				if (!$name) {
-					return "Vui lòng nhập đầy đủ thông tin về: tên loại sản phẩm";
+					return "<p id='message'>Vui lòng nhập đầy đủ thông tin.</p>";
 				}
 				$find_name=mysqli_query($conn, "SELECT name FROM type WHERE name = '$name'");
 				if (mysqli_num_rows($find_name) != 0) {
-					return "Loại sản phẩm đã tồn tại";
+					return "<p id='message'>Loại sản phẩm đã tồn tại.</p>";
 				}
 
 				$post1 = "UPDATE type SET name='{$name}' WHERE id = $id";
 				$update = mysqli_query($conn, $post1);
 
 				if ($update){
-					return "Cập nhật loại sản phẩm thành công.";
+					return "<p id='message'>Cập nhật loại sản phẩm thành công.</p>";
 				}
 				else
-					return "Có lỗi xảy ra.";
+					return "<p id='message'>Có lỗi xảy ra.</p>";
 			}
 		}
 	//delete type., product
@@ -123,10 +179,10 @@
 				$result = mysqli_query($conn,$sql);
 
 				if ($result) {
-					return "Đã xoá sản phẩm thành công.";
+					return "<p id='message'>Đã xoá sản phẩm thành công.</p>";
 				}
 				else{
-					return "Có lỗi xảy ra.";
+					return "<p id='message'>Có lỗi xảy ra.</p>";
 				}
 			}
 			if ($flag === 'type') {
@@ -134,10 +190,10 @@
 				$result = mysqli_query($conn,$sql);
 
 				if ($result) {
-					return "Đã xoá loại sản phẩm thành công.";
+					return "<p id='message'>Đã xoá loại sản phẩm thành công.</p>";
 				}
 				else{
-					return "Có lỗi xảy ra.";
+					return "<p id='message'>Có lỗi xảy ra.</p>";
 				}
 			}
 		}
@@ -149,7 +205,7 @@
 				$address = $_POST['address'];
 				$phone = $_POST['phone'];
 				if (!$name || !$address || !$phone) {
-					return "Vui lòng nhập đầy đủ thông tin về: họ tên, địa chỉ, số điện thoại.";
+					return "<p id='message'>Vui lòng nhập đầy đủ thông tin.</p>";
 				}
 				// $find_phone=mysqli_query($conn, "SELECT phone FROM customer WHERE phone = '$phone'");
 				// if (mysqli_num_rows($find_phone) != 0) {
@@ -159,10 +215,10 @@
 				$update = mysqli_query($conn, $post1);
 
 				if ($update){
-					return "Cập nhật tài khoản người dùng thành công.";
+					return "<p id='message'>Cập nhật tài khoản người dùng thành công.</p>";
 				}
 				else
-					return "Có lỗi xảy ra.";
+					return "<p id='message'>Có lỗi xảy ra.</p>";
 			}
 		}
 	}

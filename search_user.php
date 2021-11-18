@@ -7,7 +7,12 @@
 </head>
 
 <body>
-	<?php include "layouts/header_admin.php" ?>
+	<?php include "layouts/header_admin.php";
+	if(isset($_POST['search_product'])) {
+		$search = $_POST['search'];
+	}
+	 ?>
+	
 	<div class="container-fluid ad_content">
 		<div class="row">
 			<?php include "layouts/admin_menu.php" ?>
@@ -73,6 +78,9 @@
 					</div>
 				</h4>
 
+				<?php if (empty($search)): ?>
+					<h4>Hãy nhập từ khoá tìm kiếm.</h4>
+					<?php else: ?>
 				<table style="margin: auto;">
 					<tr>
 						<th>ID</th>
@@ -83,7 +91,7 @@
 						<th>Sửa</th>
 					</tr>
 					<?php
-					$get_cus = " select * from customer";
+					$get_cus = " select * from customer where name like '%$search%'";
 					$result_cus = mysqli_query($conn, $get_cus);
 					foreach ($result_cus as $row) : ?>
 						<tr>
@@ -96,6 +104,8 @@
 						</tr>
 					<?php endforeach; ?>
 				</table>
+				<?php endif; ?>
+
 			</div>
 		</div>
 	</div>
